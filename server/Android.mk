@@ -24,6 +24,12 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_CLANG := true
 LOCAL_CPPFLAGS := -std=c++11 -Wall -Werror
+
+# Enable BT/WIFI related code changes in Android source files
+ifeq ($(CONFIG_SAMSUNG_SCSC_WIFIBT),true)
+LOCAL_CPPFLAGS += -DCONFIG_SAMSUNG_SCSC_WIFIBT -Wno-unused-parameter
+endif
+
 LOCAL_MODULE := netd
 
 LOCAL_SHARED_LIBRARIES := \

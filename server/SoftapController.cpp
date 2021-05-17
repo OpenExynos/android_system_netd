@@ -184,6 +184,12 @@ int SoftapController::setSoftap(int argc, char *argv[]) {
  */
 int SoftapController::fwReloadSoftap(int argc, char *argv[])
 {
+    /**
+     * SPE-573 Enable AP mode in Android
+     * Firmware reload will be performed as part of
+     * driver reload and hence should not be done here.
+     */
+#ifndef CONFIG_SAMSUNG_SCSC_WIFIBT
     char *fwpath = NULL;
 
     if (argc < 4) {
@@ -207,6 +213,7 @@ int SoftapController::fwReloadSoftap(int argc, char *argv[])
     else {
         ALOGD("Softap fwReload - Ok");
     }
+#endif
     return ResponseCode::SoftapStatusResult;
 }
 
